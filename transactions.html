@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Transactions | NovaPay</title>
+
+    <link
+        rel="stylesheet"
+        href="./css/transactions.css"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            <span class="brand-icon">N</span>
+            <span>Nova<span>Pay</span></span>
+        </div>
+
+        <nav class="main-nav">
+
+            <a href="./dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="./transfers.html">
+                Transfers
+            </a>
+
+            <a
+                href="./transactions.html"
+                class="active"
+            >
+                Transactions
+            </a>
+
+            <a href="./deposits.html">
+                Deposits
+            </a>
+
+            <a href="./cards.html">
+                Cards
+            </a>
+
+            <a href="./bills.html">
+                Bills
+            </a>
+
+            <a href="./loans.html">
+                Loans
+            </a>
+
+        </nav>
+
+        <div class="nav-actions">
+
+            <a
+                href="./profile.html"
+                class="profile-link"
+            >
+                Profile
+            </a>
+
+            <button
+                type="button"
+                class="logout-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PAGE
+    ====================================================== -->
+
+    <main class="page-container">
+
+        <!-- PAGE HEADER -->
+
+        <section class="page-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    NOVAPAY ACCOUNT
+                </span>
+
+                <h1>
+                    Transactions
+                </h1>
+
+                <p>
+                    View and manage your complete transaction history.
+                </p>
+
+            </div>
+
+            <a
+                href="./transfers.html"
+                class="primary-btn"
+            >
+                <span>＋</span>
+                New Transfer
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+             SUMMARY CARDS
+        ================================================== -->
+
+        <section class="summary-grid">
+
+            <article class="summary-card">
+
+                <div class="summary-icon">
+                    $
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Total Transactions
+                    </span>
+
+                    <strong id="totalTransactions">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon sent">
+                    ↑
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Money Sent
+                    </span>
+
+                    <strong id="totalSent">
+                        $0.00
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon received">
+                    ↓
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Money Received
+                    </span>
+
+                    <strong id="totalReceived">
+                        $0.00
+                    </strong>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-icon pending">
+                    ◷
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Pending
+                    </span>
+
+                    <strong id="totalPending">
+                        0
+                    </strong>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =================================================
+             TRANSACTION PANEL
+        ================================================== -->
+
+        <section class="transactions-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Transaction History
+                    </h2>
+
+                    <p>
+                        Your latest account activity
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="refreshBtn"
+                    class="refresh-btn"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="filters">
+
+                <div class="search-box">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search transactions..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <select id="statusFilter">
+
+                    <option value="all">
+                        All Statuses
+                    </option>
+
+                    <option value="completed">
+                        Completed
+                    </option>
+
+                    <option value="pending">
+                        Pending
+                    </option>
+
+                    <option value="rejected">
+                        Declined
+                    </option>
+
+                </select>
+
+
+                <select id="directionFilter">
+
+                    <option value="all">
+                        All Transactions
+                    </option>
+
+                    <option value="outgoing">
+                        Money Sent
+                    </option>
+
+                    <option value="incoming">
+                        Money Received
+                    </option>
+
+                </select>
+
+
+                <select id="typeFilter">
+
+                    <option value="all">
+                        All Types
+                    </option>
+
+                    <option value="novapay">
+                        NovaPay
+                    </option>
+
+                    <option value="us_domestic">
+                        U.S. Domestic
+                    </option>
+
+                    <option value="international">
+                        International
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- =================================================
+                 TABLE
+            ================================================== -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Transaction
+                            </th>
+
+                            <th>
+                                Recipient / Sender
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="transactionsBody">
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="loading-cell"
+                            >
+                                <div class="loader"></div>
+
+                                Loading transactions...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div
+                id="emptyState"
+                class="empty-state hidden"
+            >
+
+                <div class="empty-icon">
+                    $
+                </div>
+
+                <h3>
+                    No transactions found
+                </h3>
+
+                <p>
+                    Your transactions will appear here once you make or receive a payment.
+                </p>
+
+                <a
+                    href="./transfers.html"
+                    class="primary-btn"
+                >
+                    Make a Transfer
+                </a>
+
+            </div>
+
+
+            <!-- MOBILE TRANSACTIONS -->
+
+            <div
+                id="mobileTransactions"
+                class="mobile-transactions"
+            >
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         RECEIPT MODAL
+    ====================================================== -->
+
+    <div
+        id="receiptModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-overlay"></div>
+
+        <div class="receipt-modal">
+
+            <button
+                type="button"
+                id="closeReceipt"
+                class="close-modal"
+            >
+                ×
+            </button>
+
+
+            <div class="receipt-header">
+
+                <div class="receipt-brand">
+                    <span class="brand-icon">N</span>
+                    <strong>
+                        Nova<span>Pay</span>
+                    </strong>
+                </div>
+
+                <div
+                    id="receiptStatus"
+                    class="receipt-status"
+                >
+                    COMPLETED
+                </div>
+
+            </div>
+
+
+            <div class="receipt-title">
+
+                <span>
+                    TRANSACTION RECEIPT
+                </span>
+
+                <h2 id="receiptAmount">
+                    $0.00
+                </h2>
+
+            </div>
+
+
+            <div class="receipt-reference">
+
+                <span>
+                    Transfer Reference
+                </span>
+
+                <strong id="receiptReference">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="receipt-details">
+
+                <div class="receipt-row">
+
+                    <span>
+                        Transaction Type
+                    </span>
+
+                    <strong id="receiptType">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Recipient / Sender
+                    </span>
+
+                    <strong id="receiptPerson">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Bank
+                    </span>
+
+                    <strong id="receiptBank">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Transfer Method
+                    </span>
+
+                    <strong id="receiptMethod">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Account
+                    </span>
+
+                    <strong id="receiptAccount">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Currency
+                    </span>
+
+                    <strong id="receiptCurrency">
+                        USD
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Date & Time
+                    </span>
+
+                    <strong id="receiptDate">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="receipt-row">
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong id="receiptStatusText">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="receipt-note">
+
+                <span>✓</span>
+
+                <p>
+                    This receipt is generated from your NovaPay transaction record.
+                </p>
+
+            </div>
+
+
+            <div class="receipt-actions">
+
+                <button
+                    type="button"
+                    id="printReceipt"
+                    class="primary-btn"
+                >
+                    Print Receipt
+                </button>
+
+                <button
+                    type="button"
+                    id="closeReceiptBottom"
+                    class="secondary-btn"
+                >
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script src="./js/config.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/transactions.js"></script>
+
+</body>
+</html>

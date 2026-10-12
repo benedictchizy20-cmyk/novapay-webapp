@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | NovaPay</title>
+
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/profile.css">
+</head>
+
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-top">
+
+            <a href="./dashboard.html" class="logo">
+                <span class="logo-icon">N</span>
+                <span class="logo-text">Nova<span>Pay</span></span>
+            </a>
+
+            <button
+                class="sidebar-close"
+                id="sidebarClose"
+                type="button"
+                aria-label="Close sidebar"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div class="nav-section">
+
+            <p class="nav-title">MAIN</p>
+
+            <a href="./dashboard.html" class="nav-link">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 13h8V3H3v10Zm0 8h8v-6H3v6Zm10 0h8V11h-8v10Zm0-18v6h8V3h-8Z"/>
+                    </svg>
+                </span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="./transfers.html" class="nav-link">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 7h13.2l-2.6-2.6L16 3l5 5-5 5-1.4-1.4L17.2 9H4V7Zm16 10H6.8l2.6 2.6L8 21l-5-5 5-5 1.4 1.4L6.8 15H20v2Z"/>
+                    </svg>
+                </span>
+                <span>Transfers</span>
+            </a>
+
+            <a href="./transactions.html" class="nav-link">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 4h16v2H4V4Zm0 7h16v2H4v-2Zm0 7h16v2H4v-2Z"/>
+                    </svg>
+                </span>
+                <span>Transactions</span>
+            </a>
+
+        </div>
+
+        <div class="nav-section">
+
+            <p class="nav-title">FINANCE</p>
+
+            <a href="./deposits.html" class="nav-link">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14v2H5v-2Z"/>
+                    </svg>
+                </span>
+                <span>Deposits</span>
+            </a>
+
+            <a href="./cards.html" class="nav-link">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 5h18v14H3V5Zm2 3v2h14V8H5Zm0 6v2h6v-2H5Z"/>
+                    </svg>
+                </span>
+                <span>Cards</span>
+            </a>
+
+            <a href="./bills.html" class="nav-link">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 2h12v20l-6-3-6 3V2Zm2 4v2h8V6H8Zm0 4v2h8v-2H8Z"/>
+                    </svg>
+                </span>
+                <span>Bills</span>
+            </a>
+
+            <a href="./loans.html" class="nav-link">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-2h2v2Zm2.1-7.6c-.3.5-.8.9-1.5 1.4-.7.5-1.1.8-1.3 1.1-.2.3-.3.7-.3 1.1h-2c0-.8.2-1.4.5-1.9.3-.5.8-.9 1.5-1.4.6-.4 1-.8 1.2-1.1.2-.4.3-.6.3-1 0-.4-.1-.8-.4-1-.3-.3-.7-.4-1.2-.4-1 0-1.6.5-1.8 1.5l-2-.5c.2-.9.6-1.6 1.3-2.1.7-.5 1.5-.8 2.6-.8 1.1 0 2 .3 2.7.9.7.6 1 1.4 1 2.4 0 .7-.2 1.3-.6 1.8Z"/>
+                    </svg>
+                </span>
+                <span>Loans</span>
+            </a>
+
+        </div>
+
+        <div class="nav-section">
+
+            <p class="nav-title">ACCOUNT</p>
+
+            <a href="./profile.html" class="nav-link active">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.2-8 5v3h16v-3c0-2.8-3.6-5-8-5Z"/>
+                    </svg>
+                </span>
+                <span>Profile</span>
+            </a>
+
+            <a href="./settings.html" class="nav-link">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19.4 13a7.8 7.8 0 0 0 0-2l2-1.5-2-3.4-2.4 1a8 8 0 0 0-1.7-1L15 3h-4l-.4 3.1a8 8 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.5a7.8 7.8 0 0 0 0 2l-2 1.5 2 3.4 2.4-1a8 8 0 0 0 1.7 1L11 21h4l.4-3.1a8 8 0 0 0 1.7-1l2.4 1 2.4-3.4-2-1.5ZM13 15.5A3.5 3.5 0 1 1 13 8a3.5 3.5 0 0 1 0 7.5Z"/>
+                    </svg>
+                </span>
+                <span>Settings</span>
+            </a>
+
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-user-mini">
+
+                <div class="mini-avatar" id="sidebarAvatar">
+                    N
+                </div>
+
+                <div class="mini-user-info">
+                    <strong id="sidebarUserName">Loading...</strong>
+                    <span id="sidebarUserRole">NovaPay User</span>
+                </div>
+
+            </div>
+
+            <button
+                class="logout-btn"
+                id="logoutButton"
+                type="button"
+            >
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 17v2H5V5h5v2H7v10h3Zm4-12 5 5-5 5v-3h-5v-4h5V5Z"/>
+                    </svg>
+                </span>
+                <span>Logout</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="top-header">
+
+            <div class="header-left">
+
+                <button
+                    class="menu-button"
+                    id="menuButton"
+                    type="button"
+                    aria-label="Open menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="page-heading">
+                    <span class="small-heading">ACCOUNT SETTINGS</span>
+                    <h1>My Profile</h1>
+                </div>
+
+            </div>
+
+            <div class="header-right">
+
+                <div class="top-profile">
+
+                    <div class="top-profile-image-wrap">
+
+                        <img
+                            id="topProfileImage"
+                            class="top-profile-image"
+                            src=""
+                            alt="Profile picture"
+                        >
+
+                        <div
+                            id="topProfileFallback"
+                            class="top-profile-fallback"
+                        >
+                            N
+                        </div>
+
+                    </div>
+
+                    <div class="top-profile-details">
+                        <strong id="topUserName">Loading...</strong>
+                        <span id="topUserEmail"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <section class="profile-page">
+
+            <div class="profile-page-heading">
+
+                <div>
+                    <span class="profile-eyebrow">ACCOUNT SETTINGS</span>
+                    <h2>Personal profile</h2>
+                    <p>Keep your NovaPay account information up to date.</p>
+                </div>
+
+                <span class="profile-status">
+                    <span></span>
+                    Account profile
+                </span>
+
+            </div>
+
+            <div class="profile-grid">
+
+                <section class="profile-card photo-card">
+
+                    <div class="card-heading">
+                        <div>
+                            <h3>Profile picture</h3>
+                            <p>Choose a clear photo of yourself.</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-preview">
+
+                        <img
+                            id="profilePhotoPreview"
+                            alt="Your profile picture"
+                            hidden
+                        >
+
+                        <span id="profilePhotoFallback">N</span>
+
+                    </div>
+
+                    <h4 id="photoDisplayName">Your profile</h4>
+
+                    <p class="photo-help">
+                        JPG, PNG or WebP. Maximum 5 MB.
+                    </p>
+
+                    <input
+                        type="file"
+                        id="profilePhotoInput"
+                        accept="image/jpeg,image/png,image/webp"
+                        hidden
+                    >
+
+                    <button
+                        type="button"
+                        class="button-secondary"
+                        id="choosePhotoButton"
+                    >
+                        Choose photo
+                    </button>
+
+                    <button
+                        type="button"
+                        class="button-primary photo-upload-button"
+                        id="uploadPhotoButton"
+                        disabled
+                    >
+                        Upload picture
+                    </button>
+
+                    <p
+                        class="profile-message"
+                        id="photoMessage"
+                        role="status"
+                        aria-live="polite"
+                    ></p>
+
+                </section>
+
+                <section class="profile-card details-card">
+
+                    <div class="card-heading">
+                        <div>
+                            <h3>Personal information</h3>
+                            <p>Update the details associated with your account.</p>
+                        </div>
+                    </div>
+
+                    <form id="profileForm">
+
+                        <div class="profile-form-grid">
+
+                            <div class="form-field">
+                                <label for="fullName">Full name</label>
+                                <input
+                                    id="fullName"
+                                    name="full_name"
+                                    type="text"
+                                    autocomplete="name"
+                                    placeholder="Enter your full name"
+                                    required
+                                    maxlength="100"
+                                >
+                            </div>
+
+                            <div class="form-field">
+                                <label for="email">Email address</label>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    autocomplete="email"
+                                    placeholder="Enter your email"
+                                    required
+                                    maxlength="254"
+                                >
+                            </div>
+
+                            <div class="form-field">
+                                <label for="phone">Phone number</label>
+                                <input
+                                    id="phone"
+                                    name="phone"
+                                    type="tel"
+                                    autocomplete="tel"
+                                    placeholder="Enter your phone number"
+                                    required
+                                    maxlength="30"
+                                >
+                            </div>
+
+                            <div class="form-field">
+                                <label for="accountNumber">Account number</label>
+                                <input
+                                    id="accountNumber"
+                                    name="account_number"
+                                    type="text"
+                                    readonly
+                                    aria-describedby="accountNumberHelp"
+                                >
+                                <small id="accountNumberHelp">
+                                    Your account number cannot be changed here.
+                                </small>
+                            </div>
+
+                        </div>
+
+                        <div class="profile-form-footer">
+
+                            <p
+                                class="profile-message"
+                                id="profileMessage"
+                                role="status"
+                                aria-live="polite"
+                            ></p>
+
+                            <button
+                                type="submit"
+                                class="button-primary"
+                                id="saveProfileButton"
+                            >
+                                Save changes
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+            </div>
+
+            <p class="profile-security-note">
+                <span>🔒</span>
+                Your profile changes are saved to your NovaPay account.
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/profile.js"></script>
+
+</body>
+</html>

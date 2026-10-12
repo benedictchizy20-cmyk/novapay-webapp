@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Deposits | NovaPay</title>
+
+    <link rel="stylesheet" href="./css/deposits.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            <span class="brand-icon">N</span>
+            <span>Nova<span>Pay</span></span>
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="./dashboard.html">Dashboard</a>
+
+            <a href="./transfers.html">Transfers</a>
+
+            <a href="./transactions.html">Transactions</a>
+
+            <a href="./deposits.html" class="active">
+                Deposits
+            </a>
+
+            <a href="./cards.html">Cards</a>
+
+            <a href="./bills.html">Bills</a>
+
+            <a href="./loans.html">Loans</a>
+
+        </nav>
+
+        <div class="nav-actions">
+
+            <a href="./profile.html" class="profile-link">
+                Profile
+            </a>
+
+            <button
+                type="button"
+                class="logout-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="page-container">
+
+        <!-- HERO -->
+
+        <section class="page-hero">
+
+            <div>
+
+                <div class="eyebrow">
+                    NOVAPAY FUNDING
+                </div>
+
+                <h1>
+                    Deposit Money
+                </h1>
+
+                <p>
+                    Add money to your NovaPay account securely.
+                </p>
+
+            </div>
+
+            <div class="balance-card">
+
+                <span class="balance-label">
+                    Available Balance
+                </span>
+
+                <strong id="currentBalance">
+                    $0.00
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DEPOSIT METHODS
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">
+                        FUND YOUR ACCOUNT
+                    </span>
+
+                    <h2>
+                        Choose a deposit method
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="deposit-methods">
+
+                <!-- BANK TRANSFER -->
+
+                <button
+                    type="button"
+                    class="method-card active"
+                    data-method="bank"
+                >
+
+                    <div class="method-icon">
+                        $
+                    </div>
+
+                    <div class="method-content">
+
+                        <h3>
+                            Bank Transfer
+                        </h3>
+
+                        <p>
+                            Deposit funds from a supported U.S. bank
+                            account.
+                        </p>
+
+                        <span class="method-tag">
+                            ACH / Domestic Wire
+                        </span>
+
+                    </div>
+
+                    <div class="method-check">
+                        ✓
+                    </div>
+
+                </button>
+
+
+                <!-- CARD -->
+
+                <button
+                    type="button"
+                    class="method-card"
+                    data-method="card"
+                >
+
+                    <div class="method-icon">
+                        ◇
+                    </div>
+
+                    <div class="method-content">
+
+                        <h3>
+                            Debit / Credit Card
+                        </h3>
+
+                        <p>
+                            Fund your NovaPay account using an
+                            eligible payment card.
+                        </p>
+
+                        <span class="method-tag">
+                            Card Payment
+                        </span>
+
+                    </div>
+
+                    <div class="method-check">
+                        ✓
+                    </div>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DEPOSIT FORM
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="form-card">
+
+                <div class="form-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            DEPOSIT REQUEST
+                        </span>
+
+                        <h2 id="formTitle">
+                            Bank Transfer Deposit
+                        </h2>
+
+                    </div>
+
+                    <span class="secure-badge">
+                        Secure
+                    </span>
+
+                </div>
+
+
+                <form id="depositForm">
+
+                    <input
+                        type="hidden"
+                        id="depositMethod"
+                        value="bank"
+                    >
+
+
+                    <!-- AMOUNT -->
+
+                    <div class="form-group">
+
+                        <label for="amount">
+                            Deposit Amount
+                        </label>
+
+                        <div class="amount-input">
+
+                            <span>
+                                $
+                            </span>
+
+                            <input
+                                type="number"
+                                id="amount"
+                                name="amount"
+                                min="1"
+                                step="0.01"
+                                placeholder="0.00"
+                                required
+                            >
+
+                        </div>
+
+                        <small>
+                            Enter the amount you want to deposit.
+                        </small>
+
+                    </div>
+
+
+                    <!-- BANK FIELDS -->
+
+                    <div id="bankFields">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="bankName">
+                                    Bank Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="bankName"
+                                    placeholder="Enter bank name"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="accountHolder">
+                                    Account Holder
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="accountHolder"
+                                    placeholder="Account holder name"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="accountNumber">
+                                    Account Number
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="accountNumber"
+                                    inputmode="numeric"
+                                    placeholder="Enter account number"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="routingNumber">
+                                    Routing Number
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="routingNumber"
+                                    inputmode="numeric"
+                                    placeholder="9-digit routing number"
+                                    maxlength="9"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Transfer Type
+                            </label>
+
+                            <div class="radio-group">
+
+                                <label class="radio-option">
+
+                                    <input
+                                        type="radio"
+                                        name="bankTransferType"
+                                        value="ach"
+                                        checked
+                                    >
+
+                                    <span>
+                                        ACH
+                                    </span>
+
+                                </label>
+
+
+                                <label class="radio-option">
+
+                                    <input
+                                        type="radio"
+                                        name="bankTransferType"
+                                        value="wire"
+                                    >
+
+                                    <span>
+                                        Domestic Wire
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CARD FIELDS -->
+
+                    <div
+                        id="cardFields"
+                        class="hidden"
+                    >
+
+                        <div class="form-group">
+
+                            <label for="cardName">
+                                Cardholder Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cardName"
+                                placeholder="Name on card"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="cardNumber">
+                                Card Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cardNumber"
+                                inputmode="numeric"
+                                maxlength="19"
+                                placeholder="0000 0000 0000 0000"
+                            >
+
+                        </div>
+
+
+                        <div class="form-grid three">
+
+                            <div class="form-group">
+
+                                <label for="expiry">
+                                    Expiry
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="expiry"
+                                    maxlength="5"
+                                    placeholder="MM/YY"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="cvv">
+                                    CVV
+                                </label>
+
+                                <input
+                                    type="password"
+                                    id="cvv"
+                                    inputmode="numeric"
+                                    maxlength="4"
+                                    placeholder="CVV"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="cardZip">
+                                    ZIP Code
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="cardZip"
+                                    placeholder="ZIP"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group">
+
+                        <label for="description">
+                            Description
+                            <span class="optional">
+                                Optional
+                            </span>
+                        </label>
+
+                        <textarea
+                            id="description"
+                            rows="3"
+                            placeholder="Add a note for this deposit..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- NOTICE -->
+
+                    <div class="deposit-notice">
+
+                        <div class="notice-icon">
+                            !
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Secure deposit processing
+                            </strong>
+
+                            <p>
+                                Your deposit will only be completed
+                                after NovaPay is connected to a verified
+                                payment provider.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Continue Deposit
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DEPOSIT HISTORY
+        ================================================== -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        ACTIVITY
+                    </span>
+
+                    <h2>
+                        Deposit History
+                    </h2>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="refreshHistory"
+                    class="secondary-btn"
+                >
+                    Refresh
+                </button>
+
+            </div>
+
+
+            <div class="history-card">
+
+                <div class="history-header">
+
+                    <span>
+                        Reference
+                    </span>
+
+                    <span>
+                        Method
+                    </span>
+
+                    <span>
+                        Amount
+                    </span>
+
+                    <span>
+                        Status
+                    </span>
+
+                    <span>
+                        Date
+                    </span>
+
+                    <span>
+                        Details
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="depositHistory"
+                    class="history-body"
+                >
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            $
+                        </div>
+
+                        <h3>
+                            No deposits yet
+                        </h3>
+
+                        <p>
+                            Your deposit activity will appear here
+                            once deposits are connected.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         REVIEW MODAL
+    ====================================================== -->
+
+    <div
+        id="reviewModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-overlay"></div>
+
+        <div class="modal-box">
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeReviewModal"
+            >
+                ×
+            </button>
+
+            <div class="modal-icon">
+                $
+            </div>
+
+            <span class="section-label">
+                REVIEW DEPOSIT
+            </span>
+
+            <h2>
+                Confirm deposit request
+            </h2>
+
+            <p class="modal-description">
+                Review the details below before continuing.
+            </p>
+
+
+            <div class="review-list">
+
+                <div>
+                    <span>
+                        Method
+                    </span>
+
+                    <strong id="reviewMethod">
+                        Bank Transfer
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>
+                        Amount
+                    </span>
+
+                    <strong id="reviewAmount">
+                        $0.00
+                    </strong>
+                </div>
+
+
+                <div>
+                    <span>
+                        Description
+                    </span>
+
+                    <strong id="reviewDescription">
+                        —
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="modal-warning">
+
+                <strong>
+                    Provider connection required
+                </strong>
+
+                <p>
+                    This request cannot move money yet because
+                    the payment provider has not been connected.
+                </p>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    id="cancelReview"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="submitDeposit"
+                >
+                    Submit Deposit Request
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MESSAGE MODAL
+    ====================================================== -->
+
+    <div
+        id="messageModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-overlay"></div>
+
+        <div class="modal-box small">
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeMessageModal"
+            >
+                ×
+            </button>
+
+            <div
+                id="messageIcon"
+                class="modal-icon"
+            >
+                !
+            </div>
+
+            <h2 id="messageTitle">
+                Deposit Provider
+            </h2>
+
+            <p
+                id="messageText"
+                class="modal-description"
+            >
+                Deposit processing is not connected yet.
+            </p>
+
+            <button
+                type="button"
+                class="primary-btn"
+                id="messageOkay"
+            >
+                Okay
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ====================================================== -->
+
+    <script src="./js/config.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/deposits.js"></script>
+
+</body>
+
+</html>

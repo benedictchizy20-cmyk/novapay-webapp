@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Bills | NovaPay</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/bills.css">
+</head>
+<body>
+<div class="np-layout">
+    <aside class="np-sidebar">
+        <a href="./dashboard.html" class="np-brand">
+            <span class="np-logo">N</span>
+            <span>Nova<span class="gold">Pay</span></span>
+        </a>
+
+        <div class="np-user">
+            <div class="np-avatar" id="sidebarAvatar">N</div>
+            <div class="np-user-info">
+                <strong id="sidebarUserName">NovaPay User</strong>
+                <span id="sidebarUserRole">Customer</span>
+            </div>
+        </div>
+
+        <nav class="np-nav">
+            <span class="np-nav-heading">MAIN MENU</span>
+            <a class="np-nav-link" href="./dashboard.html"><span>⌂</span> Dashboard</a>
+            <a class="np-nav-link" href="./transfers.html"><span>⇄</span> Transfers</a>
+            <a class="np-nav-link" href="./transactions.html"><span>↕</span> Transactions</a>
+            <a class="np-nav-link" href="./deposits.html"><span>＋</span> Deposits</a>
+            <a class="np-nav-link" href="./cards.html"><span>▣</span> Cards</a>
+            <a class="np-nav-link active" href="./bills.html"><span>▤</span> Pay Bills</a>
+            <a class="np-nav-link" href="./loans.html"><span>◈</span> Loans</a>
+            <a class="np-nav-link" href="./profile.html"><span>◎</span> Profile</a>
+        </nav>
+
+        <button class="np-logout" id="logoutButton" type="button">⇥ Sign Out</button>
+    </aside>
+
+    <main class="np-main">
+        <header class="np-header">
+            <div>
+                <span class="np-eyebrow">EVERYDAY PAYMENTS</span>
+                <h1>Pay Bills</h1>
+                <p>Manage bill payment from one place.</p>
+            </div>
+            <!-- <span class="demo-tag">FRONTEND DEMO</span> -->
+        </header>
+
+        <div class="demo-notice">
+            <strong> mode</strong>
+            <span> real payment will be sent. Payment confirmation, receipts, and history are stored locally in this browser.</span>
+        </div>
+
+        <section class="bill-welcome">
+            <div>
+                <span class="welcome-label">SIMPLE. QUICK. CONVENIENT.</span>
+                <h2>Your essential bills, in one place.</h2>
+                <p>Choose a category, enter your payment details, and review the transaction before simulating payment.</p>
+            </div>
+            <div class="welcome-symbol" aria-hidden="true">₿</div>
+        </section>
+
+        <section class="bill-categories">
+            <button class="category-card selected" type="button" data-category="electricity">
+                <span class="category-icon">ϟ</span>
+                <strong>Electricity</strong>
+                <small>Power bill</small>
+            </button>
+
+            <button class="category-card" type="button" data-category="internet">
+                <span class="category-icon">⌁</span>
+                <strong>Internet</strong>
+                <small>Broadband plan</small>
+            </button>
+
+            <button class="category-card" type="button" data-category="mobile">
+                <span class="category-icon">▤</span>
+                <strong>Mobile</strong>
+                <small>Airtime & data</small>
+            </button>
+
+            <button class="category-card" type="button" data-category="water">
+                <span class="category-icon">◉</span>
+                <strong>Water</strong>
+                <small>Water service</small>
+            </button>
+
+            <button class="category-card" type="button" data-category="television">
+                <span class="category-icon">▣</span>
+                <strong>TV subscription</strong>
+                <small>Entertainment</small>
+            </button>
+        </section>
+
+        <div class="bill-workspace">
+            <section class="bill-panel">
+                <div class="np-section-heading">
+                    <div>
+                        <span class="np-eyebrow">PAYMENT DETAILS</span>
+                        <h2>Make a payment</h2>
+                    </div>
+                    <span class="step-badge" id="currentStepBadge">STEP 1 OF 2</span>
+                </div>
+
+                <div id="billMessage" class="bill-message" hidden></div>
+
+                <form id="billPaymentForm">
+                    <div class="field">
+                        <label for="billCategory">Bill category</label>
+                        <select id="billCategory" name="category" required>
+                            <option value="electricity">Electricity</option>
+                            <option value="internet">Internet</option>
+                            <option value="mobile">Mobile airtime / data</option>
+                            <option value="water">Water</option>
+                            <option value="television">TV subscription</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="billProvider">Provider</label>
+                        <select id="billProvider" name="provider" required></select>
+                    </div>
+
+                    <div class="field">
+                        <label for="billAccount">Customer account / reference</label>
+                        <input
+                            id="billAccount"
+                            name="account"
+                            type="text"
+                            minlength="3"
+                            maxlength="100"
+                            placeholder="Enter customer number or reference"
+                            required
+                        >
+                        <small class="field-help" id="accountHelp">Use a sample reference for this.</small>
+                    </div>
+
+                    <div class="field">
+                        <label for="billCurrency">Currency</label>
+                        <select id="billCurrency" name="currency" required>
+                            <option value="USD">USD — US Dollar</option>
+                            <option value="EUR">EUR — Euro</option>
+                            <option value="GBP">GBP — British Pound</option>
+                            <option value="CAD">CAD — Canadian Dollar</option>
+                            <option value="AUD">AUD — Australian Dollar</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="billAmount">Amount</label>
+                        <input
+                            id="billAmount"
+                            name="amount"
+                            type="number"
+                            min="0.01"
+                            max="1000000"
+                            step="0.01"
+                            placeholder="0.00"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="billDescription">Payment note (optional)</label>
+                        <input
+                            id="billDescription"
+                            name="description"
+                            type="text"
+                            maxlength="150"
+                            placeholder="e.g. Monthly electricity bill"
+                        >
+                    </div>
+
+                    <div class="bill-summary">
+                        <div>
+                            <span>Payment amount</span>
+                            <strong id="summaryAmount">$0.00</strong>
+                        </div>
+                        <div>
+                            <span> service fee</span>
+                            <strong id="summaryFee">$0.00</strong>
+                        </div>
+                        <div class="summary-total">
+                            <span>Total (simulated)</span>
+                            <strong id="summaryTotal">$0.00</strong>
+                        </div>
+                    </div>
+
+                    <p class="fee-note">The  service fee is always $0. no funds are debited.</p>
+
+                    <button type="submit" id="reviewBillButton" class="primary-button full-button">
+                        Review payment <span>→</span>
+                    </button>
+                </form>
+            </section>
+
+            <aside class="bill-side-column">
+                <section class="bill-panel quick-panel">
+                    <span class="np-eyebrow">HOW IT WORKS</span>
+                    <h2>Three simple steps</h2>
+
+                    <div class="how-step">
+                        <span>1</span>
+                        <div><strong>Enter details</strong><p>Choose a provider and enter a sample customer reference.</p></div>
+                    </div>
+
+                    <div class="how-step">
+                        <span>2</span>
+                        <div><strong>Review payment</strong><p>Confirm the details before proceeding.</p></div>
+                    </div>
+
+                    <div class="how-step">
+                        <span>3</span>
+                        <div><strong>Get a receipt</strong><p>See your  result and save it in this browser.</p></div>
+                    </div>
+                </section>
+
+                <section class="bill-panel security-panel">
+                    <span class="security-icon">✓</span>
+                    <h3>Review before confirming</h3>
+                    <p>Always check the category, provider, reference, currency, and amount.</p>
+                </section>
+            </aside>
+        </div>
+
+        <section class="bill-panel history-panel">
+            <div class="np-section-heading">
+                <div>
+                    <span class="np-eyebrow">YOUR ACTIVITY</span>
+                    <h2>Bill payment history</h2>
+                    <p>Only  payments made in this browser appear here.</p>
+                </div>
+                <button type="button" id="clearBillHistory" class="text-action">Clear  history</button>
+            </div>
+
+            <div id="billHistory" class="bill-history">
+                <p class="empty-state">No  bill payments yet.</p>
+            </div>
+        </section>
+
+        <div class="np-toast" id="billsToast" role="status" aria-live="polite"></div>
+    </main>
+</div>
+
+<!-- Payment review modal -->
+<div class="modal-backdrop" id="reviewModal" hidden>
+    <section class="payment-modal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+        <button type="button" class="modal-close" id="closeReviewModal" aria-label="Close">×</button>
+        <span class="np-eyebrow">CHECK BEFORE CONTINUING</span>
+        <h2 id="reviewModalTitle">Review your payment</h2>
+        <p class="modal-subtitle">This is a  novapay transaction. Nothing will be charged.</p>
+
+        <div class="review-details" id="reviewDetails"></div>
+
+        <div class="modal-actions">
+            <button type="button" class="secondary-button" id="editBillButton">Go back</button>
+            <button type="button" class="primary-button" id="confirmBillButton"> payment</button>
+        </div>
+    </section>
+</div>
+
+<!-- Simulated receipt modal -->
+<div class="modal-backdrop" id="receiptModal" hidden>
+    <section class="payment-modal receipt-modal" role="dialog" aria-modal="true" aria-labelledby="receiptTitle">
+        <div class="receipt-success">✓</div>
+        <span class="np-eyebrow">D RESULT</span>
+        <h2 id="receiptTitle">Simulated payment complete</h2>
+        <p class="modal-subtitle" id="receiptSubtitle"> payment was sent.</p>
+
+        <div class="receipt-total" id="receiptTotal">$0.00</div>
+        <div class="receipt-details" id="receiptDetails"></div>
+
+        <div class="modal-actions">
+            <button type="button" class="secondary-button" id="closeReceiptButton">Close</button>
+            <button type="button" class="primary-button" id="printReceiptButton">Print receipt</button>
+        </div>
+    </section>
+</div>
+
+<script src="./js/config.js"></script>
+<script src="./js/bills.js"></script>
+</body>
+</html>

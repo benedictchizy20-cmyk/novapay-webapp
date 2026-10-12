@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Loans | NovaPay</title>
+
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/loans.css">
+</head>
+
+<body>
+    <div class="loan-layout">
+
+        <aside class="loan-sidebar">
+            <a href="./dashboard.html" class="loan-brand">
+                <span class="brand-icon">N</span>
+                <span>Nova<span class="gold-text">Pay</span></span>
+            </a>
+
+            <div class="sidebar-profile">
+                <div class="avatar" id="sidebarAvatar">N</div>
+
+                <div class="sidebar-profile-info">
+                    <strong id="sidebarUserName">NovaPay User</strong>
+                    <span id="sidebarUserRole">Customer</span>
+                </div>
+            </div>
+
+            <nav class="loan-nav">
+                <span class="nav-heading">MAIN MENU</span>
+
+                <a href="./dashboard.html" class="nav-link">
+                    <span>⌂</span> Dashboard
+                </a>
+
+                <a href="./transfers.html" class="nav-link">
+                    <span>⇄</span> Transfers
+                </a>
+
+                <a href="./transactions.html" class="nav-link">
+                    <span>↕</span> Transactions
+                </a>
+
+                <a href="./deposits.html" class="nav-link">
+                    <span>＋</span> Deposits
+                </a>
+
+                <a href="./cards.html" class="nav-link">
+                    <span>▣</span> Cards
+                </a>
+
+                <a href="./bills.html" class="nav-link">
+                    <span>▤</span> Bills
+                </a>
+
+                <a href="./loans.html" class="nav-link active">
+                    <span>◈</span> Loans
+                </a>
+
+                <a href="./profile.html" class="nav-link">
+                    <span>◎</span> Profile
+                </a>
+
+                <div id="adminNavSection" hidden>
+                    <span class="nav-heading admin-heading">ADMINISTRATION</span>
+
+                    <button
+                        type="button"
+                        id="adminReviewLink"
+                        class="nav-link admin-nav-link"
+                    >
+                        <span>✓</span> Loan Reviews
+                    </button>
+                </div>
+            </nav>
+
+            <button type="button" id="logoutButton" class="logout-button">
+                ⇥ Sign Out
+            </button>
+        </aside>
+
+        <main class="loan-main">
+
+            <header class="loan-topbar">
+                <div>
+                    <span class="eyebrow">NOVAPAY FINANCIAL SERVICES</span>
+                    <h1>Loans</h1>
+                </div>
+
+                <button
+                    type="button"
+                    id="notificationButton"
+                    class="notification-button"
+                    aria-label="View loan notifications"
+                >
+                    ♧
+                    <span id="notificationCount" class="notification-count">
+                        0
+                    </span>
+                </button>
+            </header>
+
+            <section class="loan-hero">
+                <div class="hero-copy">
+                    <span class="hero-label">PERSONAL FINANCE</span>
+                    <h2>Funding your next big move.</h2>
+                    <p>
+                        Submit a loan application and track its review
+                        directly from your NovaPay account.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="startApplicationButton"
+                        class="primary-button"
+                    >
+                        Apply for a loan <span>→</span>
+                    </button>
+                </div>
+
+                <div class="hero-mark" aria-hidden="true">
+                    <div class="hero-circle">
+                        <span>NP</span>
+                    </div>
+                    <div class="hero-orbit orbit-one"></div>
+                    <div class="hero-orbit orbit-two"></div>
+                </div>
+            </section>
+
+            <section class="loan-stats">
+                <article class="stat-card">
+                    <span>Total applications</span>
+                    <strong id="totalApplications">0</strong>
+                    <small>Applications submitted</small>
+                </article>
+
+                <article class="stat-card">
+                    <span>Pending review</span>
+                    <strong id="pendingApplications">0</strong>
+                    <small>Awaiting a decision</small>
+                </article>
+
+                <article class="stat-card">
+                    <span>Approved</span>
+                    <strong id="approvedApplications">0</strong>
+                    <small>Applications approved</small>
+                </article>
+            </section>
+
+            <section class="loan-panel" id="applicationPanel">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">GET STARTED</span>
+                        <h2>Loan application</h2>
+                        <p>Provide accurate information for review.</p>
+                    </div>
+                </div>
+
+                <div id="loanFormMessage" class="form-message" hidden></div>
+
+                <form id="loanApplicationForm">
+                    <div class="form-grid">
+
+                        <div class="field">
+                            <label for="loanFullName">Full name</label>
+                            <input
+                                id="loanFullName"
+                                name="full_name"
+                                type="text"
+                                autocomplete="name"
+                                maxlength="150"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="loanEmail">Email address</label>
+                            <input
+                                id="loanEmail"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                maxlength="254"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="loanPhone">Phone number</label>
+                            <input
+                                id="loanPhone"
+                                name="phone"
+                                type="tel"
+                                autocomplete="tel"
+                                maxlength="40"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="loanCountry">Country of residence</label>
+                            <select id="loanCountry" name="country" required>
+                                <option value="">Select country</option>
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Australia">Australia</option>
+                                <option value="New Zealand">New Zealand</option>
+                                <option value="Ireland">Ireland</option>
+                                <option value="Germany">Germany</option>
+                                <option value="France">France</option>
+                                <option value="Netherlands">Netherlands</option>
+                                <option value="Spain">Spain</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Portugal">Portugal</option>
+                                <option value="Belgium">Belgium</option>
+                                <option value="Austria">Austria</option>
+                                <option value="Sweden">Sweden</option>
+                                <option value="Denmark">Denmark</option>
+                                <option value="Finland">Finland</option>
+                                <option value="Norway">Norway</option>
+                                <option value="Switzerland">Switzerland</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="loanAddress">Residential address</label>
+                            <input
+                                id="loanAddress"
+                                name="residential_address"
+                                type="text"
+                                autocomplete="street-address"
+                                maxlength="300"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="loanEmployment">Employment status</label>
+                            <select
+                                id="loanEmployment"
+                                name="employment_status"
+                                required
+                            >
+                                <option value="">Select status</option>
+                                <option value="Employed">Employed</option>
+                                <option value="Self-employed">Self-employed</option>
+                                <option value="Business owner">Business owner</option>
+                                <option value="Contractor">Contractor</option>
+                                <option value="Student">Student</option>
+                                <option value="Unemployed">Unemployed</option>
+                                <option value="Retired">Retired</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="loanIncome">Monthly income</label>
+                            <input
+                                id="loanIncome"
+                                name="monthly_income"
+                                type="number"
+                                min="0.01"
+                                step="0.01"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="loanAmount">Requested amount</label>
+                            <input
+                                id="loanAmount"
+                                name="requested_amount"
+                                type="number"
+                                min="0.01"
+                                step="0.01"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="loanCurrency">Currency</label>
+                            <select id="loanCurrency" name="currency" required>
+                                <option value="USD">USD — US Dollar</option>
+                                <option value="EUR">EUR — Euro</option>
+                                <option value="GBP">GBP — British Pound</option>
+                                <option value="CAD">CAD — Canadian Dollar</option>
+                                <option value="AUD">AUD — Australian Dollar</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="loanTerm">Requested repayment term</label>
+                            <select id="loanTerm" name="term_months" required>
+                                <option value="">Select term</option>
+                                <option value="3">3 months</option>
+                                <option value="6">6 months</option>
+                                <option value="12">12 months</option>
+                                <option value="18">18 months</option>
+                                <option value="24">24 months</option>
+                                <option value="36">36 months</option>
+                                <option value="48">48 months</option>
+                                <option value="60">60 months</option>
+                            </select>
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="loanPurpose">Purpose of loan</label>
+                            <textarea
+                                id="loanPurpose"
+                                name="loan_purpose"
+                                rows="4"
+                                maxlength="2000"
+                                placeholder="Explain how you intend to use the funds."
+                                required
+                            ></textarea>
+                        </div>
+
+                    </div>
+
+                    <label class="consent-row">
+                        <input type="checkbox" id="loanAccuracyConsent" required>
+                        <span>
+                            I confirm that the information provided is accurate
+                            to the best of my knowledge.
+                        </span>
+                    </label>
+
+                    <label class="consent-row">
+                        <input type="checkbox" id="loanReviewConsent" required>
+                        <span>
+                            I understand that submission is not a guarantee of
+                            approval and that an administrator must review my
+                            application.
+                        </span>
+                    </label>
+
+                    <button
+                        type="submit"
+                        id="submitLoanButton"
+                        class="primary-button submit-button"
+                    >
+                        Submit application <span>→</span>
+                    </button>
+                </form>
+            </section>
+
+            <section class="loan-panel">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">APPLICATION HISTORY</span>
+                        <h2>My applications</h2>
+                        <p>Check the current status of each application.</p>
+                    </div>
+                </div>
+
+                <div id="loanList" class="loan-list">
+                    <p class="empty-state">Loading applications...</p>
+                </div>
+            </section>
+
+            <section class="loan-panel" id="adminReviewPanel" hidden>
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">ADMINISTRATION</span>
+                        <h2>Loan review queue</h2>
+                        <p>
+                            Review submitted applications and record decisions.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="adminLoanMessage" class="form-message" hidden></div>
+
+                <div id="adminLoanList" class="admin-loan-list">
+                    <p class="empty-state">Loading review queue...</p>
+                </div>
+            </section>
+
+            <section class="loan-panel" id="notificationsPanel">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">ACCOUNT UPDATES</span>
+                        <h2>Loan notifications</h2>
+                        <p>Updates about your submitted applications.</p>
+                    </div>
+                </div>
+
+                <div id="loanNotifications" class="notification-list">
+                    <p class="empty-state">Loading notifications...</p>
+                </div>
+            </section>
+
+            <footer class="loan-footer">
+                <span>NovaPay</span>
+                <span>Loan applications are subject to review.</span>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/loans.js"></script>
+</body>
+</html>

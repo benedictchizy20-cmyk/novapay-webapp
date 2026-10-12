@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards | NovaPay</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/cards.css">
+</head>
+<body>
+<div class="np-layout">
+    <aside class="np-sidebar">
+        <a href="./dashboard.html" class="np-brand">
+            <span class="np-logo">N</span>
+            <span>Nova<span class="gold">Pay</span></span>
+        </a>
+
+        <div class="np-user">
+            <div class="np-avatar" id="sidebarAvatar">N</div>
+            <div class="np-user-info">
+                <strong id="sidebarUserName">NovaPay User</strong>
+                <span id="sidebarUserRole">Customer</span>
+            </div>
+        </div>
+
+        <nav class="np-nav">
+            <span class="np-nav-heading">MAIN MENU</span>
+            <a class="np-nav-link" href="./dashboard.html"><span>⌂</span> Dashboard</a>
+            <a class="np-nav-link" href="./transfers.html"><span>⇄</span> Transfers</a>
+            <a class="np-nav-link" href="./transactions.html"><span>↕</span> Transactions</a>
+            <a class="np-nav-link" href="./deposits.html"><span>＋</span> Deposits</a>
+            <a class="np-nav-link active" href="./cards.html"><span>▣</span> Cards</a>
+            <a class="np-nav-link" href="./bills.html"><span>▤</span> Pay Bills</a>
+            <a class="np-nav-link" href="./loans.html"><span>◈</span> Loans</a>
+            <a class="np-nav-link" href="./profile.html"><span>◎</span> Profile</a>
+        </nav>
+
+        <button class="np-logout" id="logoutButton" type="button">⇥ Sign Out</button>
+    </aside>
+
+    <main class="np-main">
+        <header class="np-header">
+            <div>
+                <span class="np-eyebrow">PAYMENTS AND SECURITY</span>
+                <h1>My Cards</h1>
+                <p>Manage your virtual card and card settings.</p>
+            </div>
+            <!-- <span class="demo-tag">FRONTEND DEMO</span>
+        </header>
+
+        <div class="demo-notice">
+            <strong>Demo mode</strong>
+            <span>This is a visual card simulation. No real card is issued and no real payments can be made.</span>
+        </div> -->
+
+        <section class="cards-hero-grid">
+            <article class="virtual-card" id="virtualCard">
+                <div class="card-top">
+                    <div class="card-brand">Nova<span>Pay</span></div>
+                    <div class="card-chip"><i></i><i></i><i></i><i></i></div>
+                </div>
+
+                <div class="card-label">VIRTUAL CARD</div>
+
+                <div class="card-number-row">
+                    <span id="cardNumber">•••• •••• •••• 4242</span>
+                    <button type="button" class="tiny-card-button" id="toggleCardDetails">Show</button>
+                </div>
+
+                <div class="card-bottom">
+                    <div>
+                        <small>CARDHOLDER</small>
+                        <strong id="cardHolder">NOVAPAY USER</strong>
+                    </div>
+                    <div>
+                        <small>EXPIRES</small>
+                        <strong id="cardExpiry">••/••</strong>
+                    </div>
+                    <div class="card-network">VISA*</div>
+                </div>
+            </article>
+
+            <article class="card-overview">
+                <span class="np-eyebrow">CARD STATUS</span>
+                <div class="status-line">
+                    <span class="status-dot" id="cardStatusDot"></span>
+                    <strong id="cardStatusText">Active card</strong>
+                </div>
+                <p id="cardStatusDescription">Your  card is ready to preview.</p>
+
+                <div class="overview-divider"></div>
+
+                <div class="overview-row">
+                    <span>Card type</span>
+                    <strong>Virtual</strong>
+                </div>
+                <div class="overview-row">
+                    <span>Currency</span>
+                    <strong>USD</strong>
+                </div>
+                <div class="overview-row">
+                    <span>Real payment capability</span>
+                    <strong>yes</strong>
+                </div>
+            </article>
+        </section>
+
+        <section class="card-action-grid">
+            <button type="button" class="action-tile" id="showDetailsAction">
+                <span class="action-icon">◎</span>
+                <strong>Card details</strong>
+                <small>Show or hide  details</small>
+            </button>
+
+            <button type="button" class="action-tile" id="copyCardAction">
+                <span class="action-icon">▣</span>
+                <strong>Copy card number</strong>
+                <small>Copy the  card number</small>
+            </button>
+
+            <button type="button" class="action-tile" id="freezeCardAction">
+                <span class="action-icon">❄</span>
+                <strong id="freezeActionTitle">Freeze card</strong>
+                <small id="freezeActionDescription">Temporarily disable the  card</small>
+            </button>
+
+            <button type="button" class="action-tile" id="newCardAction">
+                <span class="action-icon">＋</span>
+                <strong>Reset  card</strong>
+                <small>Generate a fresh card preview</small>
+            </button>
+        </section>
+
+        <section class="np-panel">
+            <div class="np-section-heading">
+                <div>
+                    <span class="np-eyebrow">CARD INFORMATION</span>
+                    <h2>Card details</h2>
+                </div>
+                <span class="demo-tag">SAMPLE DATA</span>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-box">
+                    <span>Card number</span>
+                    <strong id="detailsNumber">•••• •••• •••• 4242</strong>
+                    <button type="button" class="text-action" id="copyDetailsNumber">Copy number</button>
+                </div>
+
+                <div class="detail-box">
+                    <span>Expiry date</span>
+                    <strong id="detailsExpiry">••/••</strong>
+                </div>
+
+                <div class="detail-box">
+                    <span>Security code</span>
+                    <strong id="detailsCvv">•••</strong>
+                </div>
+
+                <div class="detail-box">
+                    <span>Cardholder</span>
+                    <strong id="detailsHolder">NOVAPAY USER</strong>
+                </div>
+            </div>
+
+            <p class="security-note">
+                use and pay with care .
+            </p>
+        </section>
+
+        <section class="np-panel">
+            <div class="np-section-heading">
+                <div>
+                    <span class="np-eyebrow">ACTIVITY</span>
+                    <h2>Card activity</h2>
+                </div>
+                <button type="button" class="text-action" id="clearCardActivity">Clear activity</button>
+            </div>
+
+            <div id="cardActivity" class="activity-list">
+                <p class="empty-state">No activity yet.</p>
+            </div>
+        </section>
+
+        <div class="np-toast" id="cardsToast" role="status" aria-live="polite"></div>
+    </main>
+</div>
+
+<script src="./js/config.js"></script>
+<script src="./js/cards.js"></script>
+</body>
+</html>

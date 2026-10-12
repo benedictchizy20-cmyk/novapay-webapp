@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Transfers | NovaPay</title>
+
+  <link rel="stylesheet" href="./css/transfers.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       SIDEBAR
+  ========================== -->
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <div class="brand-mark">N</div>
+      <div class="brand-text">
+        <strong>Nova<span>Pay</span></strong>
+        <small>Financial Platform</small>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <a href="./dashboard.html">
+        <span class="nav-icon">⌂</span>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="./transfers.html" class="active">
+        <span class="nav-icon">↗</span>
+        <span>Transfers</span>
+      </a>
+
+      <a href="./transactions.html">
+        <span class="nav-icon">↔</span>
+        <span>Transactions</span>
+      </a>
+
+      <a href="./deposits.html">
+        <span class="nav-icon">＋</span>
+        <span>Deposits</span>
+      </a>
+
+      <a href="./cards.html">
+        <span class="nav-icon">▣</span>
+        <span>Cards</span>
+      </a>
+
+      <a href="./bills.html">
+        <span class="nav-icon">▤</span>
+        <span>Bills</span>
+      </a>
+
+      <a href="./loans.html">
+        <span class="nav-icon">▥</span>
+        <span>Loans</span>
+      </a>
+
+      <div class="nav-divider"></div>
+
+      <a href="./profile.html">
+        <span class="nav-icon">◉</span>
+        <span>Profile</span>
+      </a>
+
+      <a href="./settings.html">
+        <span class="nav-icon">⚙</span>
+        <span>Settings</span>
+      </a>
+
+    </nav>
+
+    <button class="logout-button" onclick="logout()">
+      <span>↪</span>
+      Logout
+    </button>
+
+  </aside>
+
+
+  <!-- =========================
+       MOBILE OVERLAY
+  ========================== -->
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <button class="mobile-menu" id="mobileMenu">
+        ☰
+      </button>
+
+      <div>
+        <p class="topbar-label">NOVA TRANSFER CENTER</p>
+        <h1>Send Money</h1>
+      </div>
+
+      <div class="topbar-user">
+
+        <div class="topbar-avatar" id="topbarAvatar">
+          N
+        </div>
+
+        <div class="topbar-user-info">
+          <strong id="topbarName">NovaPay User</strong>
+          <span id="topbarAccount">Account</span>
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- PAGE -->
+
+    <section class="page-container">
+
+      <!-- INTRO -->
+
+      <div class="page-intro">
+
+        <div>
+          <span class="eyebrow">SECURE MONEY MOVEMENT</span>
+
+          <h2>Choose where you want to send money.</h2>
+
+          <p>
+            Transfer funds to another NovaPay account, a U.S. domestic bank,
+            or an international bank account.
+          </p>
+        </div>
+
+        <div class="security-badge">
+          <span class="security-icon">✓</span>
+
+          <div>
+            <strong>Secure Transfer</strong>
+            <small>Protected by NovaPay</small>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           TRANSFER TYPE
+      ========================== -->
+
+      <div class="transfer-types">
+
+        <button
+          type="button"
+          class="transfer-type active"
+          data-type="novapay"
+        >
+
+          <div class="type-icon">N</div>
+
+          <div class="type-content">
+            <strong>NovaPay</strong>
+            <span>Send to another NovaPay account</span>
+          </div>
+
+          <span class="type-arrow">→</span>
+
+        </button>
+
+
+        <button
+          type="button"
+          class="transfer-type"
+          data-type="us_domestic"
+        >
+
+          <div class="type-icon">$</div>
+
+          <div class="type-content">
+            <strong>U.S. Domestic</strong>
+            <span>Send to a U.S. bank account</span>
+          </div>
+
+          <span class="type-arrow">→</span>
+
+        </button>
+
+
+        <button
+          type="button"
+          class="transfer-type"
+          data-type="international"
+        >
+
+          <div class="type-icon">◎</div>
+
+          <div class="type-content">
+            <strong>International</strong>
+            <span>Send to an international bank</span>
+          </div>
+
+          <span class="type-arrow">→</span>
+
+        </button>
+
+      </div>
+
+
+      <!-- =========================
+           TRANSFER WORKSPACE
+      ========================== -->
+
+      <div class="transfer-layout">
+
+
+        <!-- FORM -->
+
+        <section class="transfer-card">
+
+          <div class="card-heading">
+
+            <div>
+              <span class="section-label">TRANSFER DETAILS</span>
+              <h3 id="formTitle">NovaPay Transfer</h3>
+            </div>
+
+            <span class="status-dot">
+              <i></i>
+              Secure
+            </span>
+
+          </div>
+
+
+          <!-- =========================
+               NOVAPAY FORM
+          ========================== -->
+
+          <form id="transferForm" novalidate>
+
+            <div
+              class="transfer-form-section active"
+              id="novapayForm"
+            >
+
+              <div class="section-info">
+                <div class="info-icon">N</div>
+
+                <div>
+                  <strong>NovaPay Account</strong>
+                  <p>
+                    Enter the recipient's NovaPay account number.
+                    Recipient details will be retrieved from NovaPay.
+                  </p>
+                </div>
+              </div>
+
+
+              <div class="field-group">
+
+                <label for="novaPayAccount">
+                  NovaPay Account Number
+                </label>
+
+                <div class="input-with-action">
+
+                  <input
+                    type="text"
+                    id="novaPayAccount"
+                    name="receiver_account_number"
+                    placeholder="Enter NovaPay account number"
+                    autocomplete="off"
+                  >
+
+                  <button
+                    type="button"
+                    class="verify-button"
+                    id="lookupRecipient"
+                  >
+                    Find
+                  </button>
+
+                </div>
+
+                <small class="field-help">
+                  We will retrieve the account holder details from NovaPay.
+                </small>
+
+              </div>
+
+
+              <!-- RECIPIENT RESULT -->
+
+              <div
+                class="recipient-result"
+                id="novaRecipientResult"
+                hidden
+              >
+
+                <div class="recipient-avatar" id="recipientAvatar">
+                  N
+                </div>
+
+                <div class="recipient-details">
+
+                  <span>RECIPIENT</span>
+
+                  <strong id="recipientName">
+                    —
+                  </strong>
+
+                  <small id="recipientBank">
+                    NovaPay
+                  </small>
+
+                  <small id="recipientAccount">
+                    —
+                  </small>
+
+                </div>
+
+                <div class="verified-badge" id="recipientVerified">
+                  ✓ Verified
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- =========================
+                 U.S. DOMESTIC FORM
+            ========================== -->
+
+            <div
+              class="transfer-form-section"
+              id="usDomesticForm"
+            >
+
+              <div class="section-info">
+
+                <div class="info-icon">$</div>
+
+                <div>
+                  <strong>U.S. Domestic Bank Transfer</strong>
+
+                  <p>
+                    Send money to a bank account held at a U.S. financial
+                    institution.
+                  </p>
+                </div>
+
+              </div>
+
+
+              <div class="form-grid">
+
+                <div class="field-group full">
+
+                  <label for="usRecipientName">
+                    Account Holder Name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="usRecipientName"
+                    placeholder="Full name of account holder"
+                  >
+
+                </div>
+
+
+                <div class="field-group">
+
+                  <label for="usBankName">
+                    Bank Name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="usBankName"
+                    placeholder="e.g. Chase"
+                  >
+
+                </div>
+
+
+                <div class="field-group">
+
+                  <label for="usAccountType">
+                    Account Type
+                  </label>
+
+                  <select id="usAccountType">
+
+                    <option value="">
+                      Select account type
+                    </option>
+
+                    <option value="checking">
+                      Checking
+                    </option>
+
+                    <option value="savings">
+                      Savings
+                    </option>
+
+                  </select>
+
+                </div>
+
+
+                <div class="field-group">
+
+                  <label for="usRoutingNumber">
+                    Routing Number
+                  </label>
+
+                  <input
+                    type="text"
+                    id="usRoutingNumber"
+                    inputmode="numeric"
+                    maxlength="9"
+                    placeholder="9-digit routing number"
+                  >
+
+                </div>
+
+
+                <div class="field-group">
+
+                  <label for="usAccountNumber">
+                    Account Number
+                  </label>
+
+                  <input
+                    type="text"
+                    id="usAccountNumber"
+                    inputmode="numeric"
+                    placeholder="Bank account number"
+                  >
+
+                </div>
+
+
+                <div class="field-group full">
+
+                  <label>
+                    Transfer Method
+                  </label>
+
+                  <div class="method-options">
+
+                    <label class="method-option">
+
+                      <input
+                        type="radio"
+                        name="us_transfer_method"
+                        value="ACH"
+                        checked
+                      >
+
+                      <span>
+                        <strong>ACH</strong>
+                        <small>Electronic U.S. bank transfer</small>
+                      </span>
+
+                    </label>
+
+
+                    <label class="method-option">
+
+                      <input
+                        type="radio"
+                        name="us_transfer_method"
+                        value="Domestic Wire"
+                      >
+
+                      <span>
+                        <strong>Domestic Wire</strong>
+                        <small>U.S. domestic wire transfer</small>
+                      </span>
+
+                    </label>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="verification-notice">
+
+                <span>!</span>
+
+                <p>
+                  NovaPay will verify the recipient banking information
+                  before a live transfer is processed. This prototype does
+                  not claim to verify U.S. bank ownership automatically.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- =========================
+                 INTERNATIONAL FORM
+            ========================== -->
+
+            <div
+              class="transfer-form-section"
+              id="internationalForm"
+            >
+
+              <div class="section-info">
+
+                <div class="info-icon">◎</div>
+
+                <div>
+
+                  <strong>International Transfer</strong>
+
+                  <p>
+                    Enter the recipient's international banking information.
+                    Required fields may vary by destination country.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="form-grid">
+
+                <div class="field-group">
+
+                  <label for="internationalCountry">
+                    Country
+                  </label>
+
+                  <select id="internationalCountry">
+
+                    <option value="">
+                      Select country
+                    </option>
+
+                    <option value="United Kingdom">
+                      United Kingdom
+                    </option>
+
+                    <option value="Canada">
+                      Canada
+                    </option>
+
+                    <option value="Germany">
+                      Germany
+                    </option>
+
+                    <option value="France">
+                      France
+                    </option>
+
+                    <option value="Australia">
+                      Australia
+                    </option>
+
+                    <option value="United Arab Emirates">
+                      United Arab Emirates
+                    </option>
+
+                    <option value="Singapore">
+                      Singapore
+                    </option>
+
+                    <option value="Other">
+                      Other
+                    </option>
+
+                  </select>
+
+                </div>
+
+
+                <div class="field-group">
+
+                  <label for="internationalCurrency">
+                    Currency
+                  </label>
+
+                  <select id="internationalCurrency">
+
+                    <option value="USD">
+                      USD — U.S. Dollar
+                    </option>
+
+                    <option value="GBP">
+                      GBP — British Pound
+                    </option>
+
+                    <option value="EUR">
+                      EUR — Euro
+                    </option>
+
+                    <option value="CAD">
+                      CAD — Canadian Dollar
+                    </option>
+
+                    <option value="AUD">
+                      AUD — Australian Dollar
+                    </option>
+
+                    <option value="AED">
+                      AED — UAE Dirham
+                    </option>
+
+                    <option value="SGD">
+                      SGD — Singapore Dollar
+                    </option>
+
+                  </select>
+
+                </div>
+
+
+                <div class="field-group full">
+
+                  <label for="internationalRecipientName">
+                    Recipient Name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="internationalRecipientName"
+                    placeholder="Full recipient name"
+                  >
+
+                </div>
+
+
+                <div class="field-group">
+
+                  <label for="internationalBankName">
+                    Bank Name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="internationalBankName"
+                    placeholder="Recipient bank name"
+                  >
+
+                </div>
+
+
+                <div class="field-group">
+
+                  <label for="internationalBankCountry">
+                    Bank Country
+                  </label>
+
+                  <input
+                    type="text"
+                    id="internationalBankCountry"
+                    placeholder="Country where bank is located"
+                  >
+
+                </div>
+
+
+                <div class="field-group">
+
+                  <label for="internationalAccount">
+                    Account Number / IBAN
+                  </label>
+
+                  <input
+                    type="text"
+                    id="internationalAccount"
+                    placeholder="Account number or IBAN"
+                  >
+
+                </div>
+
+
+                <div class="field-group">
+
+                  <label for="internationalSwift">
+                    SWIFT / BIC
+                  </label>
+
+                  <input
+                    type="text"
+                    id="internationalSwift"
+                    placeholder="e.g. BOFAUS3N"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <div class="verification-notice">
+
+                <span>!</span>
+
+                <p>
+                  International transfers may require additional
+                  destination-specific information before processing.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- =========================
+                 AMOUNT
+            ========================== -->
+
+            <div class="amount-section">
+
+              <div class="section-title-row">
+
+                <div>
+                  <span class="section-label">
+                    PAYMENT
+                  </span>
+
+                  <h4>How much do you want to send?</h4>
+                </div>
+
+              </div>
+
+
+              <div class="amount-input-wrapper">
+
+                <span>$</span>
+
+                <input
+                  type="number"
+                  id="transferAmount"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="0.00"
+                  inputmode="decimal"
+                >
+
+              </div>
+
+
+              <div class="field-group">
+
+                <label for="transferDescription">
+                  Description <span>Optional</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="transferDescription"
+                  maxlength="150"
+                  placeholder="What is this transfer for?"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- FORM MESSAGE -->
+
+            <div
+              class="form-message"
+              id="formMessage"
+              hidden
+            ></div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+              type="submit"
+              class="continue-button"
+              id="continueButton"
+            >
+
+              <span>Review Transfer</span>
+
+              <strong>→</strong>
+
+            </button>
+
+          </form>
+
+        </section>
+
+
+        <!-- =========================
+             SIDE SUMMARY
+        ========================== -->
+
+        <aside class="transfer-summary">
+
+          <div class="summary-card">
+
+            <div class="summary-heading">
+
+              <span class="section-label">
+                TRANSFER SUMMARY
+              </span>
+
+              <div class="summary-icon">
+                $
+              </div>
+
+            </div>
+
+
+            <div class="summary-amount">
+
+              <span>Amount</span>
+
+              <strong id="summaryAmount">
+                $0.00
+              </strong>
+
+            </div>
+
+
+            <div class="summary-line">
+              <span>Transfer type</span>
+              <strong id="summaryType">NovaPay</strong>
+            </div>
+
+
+            <div class="summary-line">
+              <span>Recipient</span>
+              <strong id="summaryRecipient">Not selected</strong>
+            </div>
+
+
+            <div class="summary-line">
+              <span>Method</span>
+              <strong id="summaryMethod">NovaPay</strong>
+            </div>
+
+
+            <div class="summary-line">
+              <span>Currency</span>
+              <strong id="summaryCurrency">USD</strong>
+            </div>
+
+
+            <div class="summary-divider"></div>
+
+
+            <div class="summary-total">
+
+              <span>Total</span>
+
+              <strong id="summaryTotal">
+                $0.00
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="notice-card">
+
+            <div class="notice-icon">
+              ✓
+            </div>
+
+            <div>
+
+              <strong>Before you send</strong>
+
+              <p>
+                Make sure the recipient information is correct.
+                Transfers may not be reversible after processing.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="support-card">
+
+            <span>Need help?</span>
+
+            <strong>NovaPay Support</strong>
+
+            <small>
+              Secure financial assistance
+            </small>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       CONFIRMATION MODAL
+  ========================== -->
+
+  <div
+    class="modal-backdrop"
+    id="confirmationModal"
+    hidden
+  >
+
+    <div class="modal">
+
+      <button
+        class="modal-close"
+        id="closeConfirmation"
+        type="button"
+      >
+        ×
+      </button>
+
+      <div class="modal-icon">
+        ✓
+      </div>
+
+      <span class="modal-label">
+        REVIEW TRANSFER
+      </span>
+
+      <h2>Confirm your transfer</h2>
+
+      <p class="modal-description">
+        Please review the information below before submitting.
+      </p>
+
+
+      <div class="confirmation-details">
+
+        <div>
+          <span>Transfer type</span>
+          <strong id="confirmType">—</strong>
+        </div>
+
+        <div>
+          <span>Recipient</span>
+          <strong id="confirmRecipient">—</strong>
+        </div>
+
+        <div>
+          <span>Bank</span>
+          <strong id="confirmBank">—</strong>
+        </div>
+
+        <div>
+          <span>Account</span>
+          <strong id="confirmAccount">—</strong>
+        </div>
+
+        <div>
+          <span>Method</span>
+          <strong id="confirmMethod">—</strong>
+        </div>
+
+        <div>
+          <span>Amount</span>
+          <strong id="confirmAmount">—</strong>
+        </div>
+
+      </div>
+
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="secondary-button"
+          id="cancelConfirmation"
+        >
+          Go Back
+        </button>
+
+        <button
+          type="button"
+          class="primary-button"
+          id="confirmTransfer"
+        >
+          Confirm & Send
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       RECEIPT MODAL
+  ========================== -->
+
+  <div
+    class="modal-backdrop"
+    id="receiptModal"
+    hidden
+  >
+
+    <div class="modal receipt-modal">
+
+      <button
+        class="modal-close"
+        id="closeReceipt"
+        type="button"
+      >
+        ×
+      </button>
+
+
+      <div
+        class="receipt-status-icon"
+        id="receiptStatusIcon"
+      >
+        ✓
+      </div>
+
+
+      <span class="modal-label">
+        NOVAPAY TRANSFER RECEIPT
+      </span>
+
+      <h2 id="receiptTitle">
+        Transfer Successful
+      </h2>
+
+      <p
+        class="receipt-status-text"
+        id="receiptStatusText"
+      >
+        Your transfer has been processed.
+      </p>
+
+
+      <div class="receipt-reference">
+
+        <span>TRANSFER REFERENCE</span>
+
+        <strong id="receiptReference">
+          NP-000000
+        </strong>
+
+      </div>
+
+
+      <div class="receipt-details">
+
+        <div>
+          <span>Status</span>
+          <strong id="receiptStatus">Successful</strong>
+        </div>
+
+        <div>
+          <span>Transfer Type</span>
+          <strong id="receiptType">NovaPay</strong>
+        </div>
+
+        <div>
+          <span>Recipient</span>
+          <strong id="receiptRecipient">—</strong>
+        </div>
+
+        <div>
+          <span>Bank</span>
+          <strong id="receiptBank">—</strong>
+        </div>
+
+        <div>
+          <span>Amount</span>
+          <strong id="receiptAmount">$0.00</strong>
+        </div>
+
+        <div>
+          <span>Currency</span>
+          <strong id="receiptCurrency">USD</strong>
+        </div>
+
+        <div>
+          <span>Method</span>
+          <strong id="receiptMethod">—</strong>
+        </div>
+
+        <div>
+          <span>Date & Time</span>
+          <strong id="receiptDate">—</strong>
+        </div>
+
+        <div>
+          <span>Sender Account</span>
+          <strong id="receiptSender">—</strong>
+        </div>
+
+        <div>
+          <span>Recipient Account</span>
+          <strong id="receiptRecipientAccount">—</strong>
+        </div>
+
+      </div>
+
+
+      <div class="receipt-actions">
+
+        <button
+          type="button"
+          class="secondary-button"
+          id="printReceipt"
+        >
+          Print Receipt
+        </button>
+
+        <button
+          type="button"
+          class="primary-button"
+          id="doneReceipt"
+        >
+          Done
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       SCRIPTS
+  ========================== -->
+
+  <script src="./js/config.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/transfers.js"></script>
+
+</body>
+</html>
